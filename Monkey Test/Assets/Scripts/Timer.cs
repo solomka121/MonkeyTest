@@ -5,12 +5,12 @@ using UnityEngine.UI;
 public sealed class Timer : MonoBehaviour
 {
     [SerializeField] private float _duration = 60f;
-    private float _timeToEnd;
+    [SerializeField] private float _timeToEnd;
     private float _timerFillCount;
     private Image _timerImage;
 
     public event System.Action<bool> OnTimerStateChange;
-    private bool IsRunning;
+    private bool _isActive;
     private bool _pause;
 
     void Start()
@@ -26,6 +26,7 @@ public sealed class Timer : MonoBehaviour
     public void RefreshTimer()
     {
         _timeToEnd = _duration;
+        StopAllCoroutines(); // clear previous timer courutine if game was restarted
         StartCountdown();
     }
     public void PauseTimer(bool state)
@@ -35,8 +36,8 @@ public sealed class Timer : MonoBehaviour
 
     private IEnumerator StartCountdownCorutine()
     {
-        IsRunning = true;
-        OnTimerStateChange(IsRunning);
+        _isActive = true;
+        OnTimerStateChange(_isActive);
         while (_timeToEnd > 0)
         {
             yield return new WaitForFixedUpdate();
@@ -46,7 +47,7 @@ public sealed class Timer : MonoBehaviour
             _timerFillCount = _timeToEnd / _duration;
             _timerImage.fillAmount = _timerFillCount;
         }
-        IsRunning = false;
-        OnTimerStateChange(IsRunning);
+        _isActive = false;
+        OnTimerStateChange(_isActive);
     }
 }

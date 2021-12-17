@@ -12,7 +12,7 @@ public sealed class PauseMenu : PopUpPanel
     public Button exit;
     public Button resume;
 
-    public event Action<bool> IsPaused;
+    public event Action<bool> SetOnPause;
     public event Action Restart;
 
     protected override void Awake()
@@ -31,7 +31,7 @@ public sealed class PauseMenu : PopUpPanel
 
     public void PauseGame()
     {
-        IsPaused?.Invoke(true);
+        SetOnPause?.Invoke(true);
         ShrinkOut();
     }
     public void RestartGame()
@@ -45,7 +45,7 @@ public sealed class PauseMenu : PopUpPanel
     }
     public void ResumeGame()
     {
-        IsPaused?.Invoke(false);
+        SetOnPause?.Invoke(false);
         ShrinkIn();
     }
 }

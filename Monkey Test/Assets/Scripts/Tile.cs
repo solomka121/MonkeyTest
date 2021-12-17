@@ -17,8 +17,6 @@ public sealed class Tile : MonoBehaviour
     public AnimationCurve coverButtonShrinkInType;
     public float coverButtonShrinkInDuration;
 
-    public bool textAppear;
-    public bool start;
     public bool isOpen { get; private set; } = true;
     public int order { get => _order; }
     private int _order;
@@ -37,18 +35,6 @@ public sealed class Tile : MonoBehaviour
     private void Start()
     {
         CoverButtonAddStandartListeners();
-    }
-
-    private void FixedUpdate()
-    {
-        if (start)
-        {
-            if(textAppear)
-                TextShrinkOut(_tileText.gameObject, textShrinkOutType, textShrinkOutDuration);
-            else
-                TextShrinkIn(_tileText.gameObject, textShrinkInType, textShrinkInDuration);
-            start = false;
-        }
     }
 
     public void Inject(GameField manager , ObjectPool indicatorsPool)

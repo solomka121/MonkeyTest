@@ -24,10 +24,10 @@ public sealed class Manager : MonoBehaviour
         gameOver.SetHighScore(_localGameHighScore);
 
         gameField.OnEndGameFieldClear += EndGame;
-        pauseMenu.IsPaused += gameField.PauseGame;
-        pauseMenu.Restart += gameField.Restart;
+        pauseMenu.SetOnPause += gameField.PauseGame;
+        pauseMenu.Restart += gameField.RestartAndRun;
         pauseMenu.Restart += infoPanel.timer.RefreshTimer;
-        pauseMenu.IsPaused += infoPanel.timer.PauseTimer;
+        pauseMenu.SetOnPause += infoPanel.timer.PauseTimer;
     }
 
     private void EndGame()
@@ -45,9 +45,9 @@ public sealed class Manager : MonoBehaviour
     private void OnDisable()
     {
         gameField.OnEndGameFieldClear -= EndGame;
-        pauseMenu.IsPaused -= gameField.PauseGame;
-        pauseMenu.Restart -= gameField.Restart;
+        pauseMenu.SetOnPause -= gameField.PauseGame;
+        pauseMenu.Restart -= gameField.RestartAndRun;
         pauseMenu.Restart -= infoPanel.timer.RefreshTimer;
-        pauseMenu.IsPaused -= infoPanel.timer.PauseTimer;
+        pauseMenu.SetOnPause -= infoPanel.timer.PauseTimer;
     }
 }

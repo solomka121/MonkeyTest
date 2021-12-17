@@ -35,8 +35,9 @@ public sealed class GameField : MonoBehaviour
     private Tile[] _activeTiles;
     private int _currentOrder;
 
-    private bool _isPlaying;
-    private bool _isTimerRunning;
+    private bool _isFirstRun = true;
+    private bool _isPaused;
+    private bool _isTimerActive;
     private float _spawnTimer;
     [SerializeField] private float _spawnTimerTemp = 0.1f;
     [SerializeField] private List<Tile> _tileList;
@@ -172,7 +173,7 @@ public sealed class GameField : MonoBehaviour
             tile.ClearListeners();
         }
 
-        if (_isTimerRunning)
+        if (_isTimerActive)
             StartCoroutine(FillTiles(_delayToFillTiles));
         else
             OnEndGameFieldClear();
@@ -249,8 +250,9 @@ public sealed class GameField : MonoBehaviour
 
     private void ChangeTimerState(bool state)
     {
-        _isTimerRunning = state;
-        PlayGame(state);
+        _isTimerActive = state;
+        if(_isFirstRun)
+            PlayGame(state);
     }
 
     private void PlayGame(bool state)
@@ -260,6 +262,7 @@ public sealed class GameField : MonoBehaviour
             StartCoroutine(FillTiles(_delayToFillTiles));
             ResetProgress();
             ResetDifficulty();
+            _isFirstRun = false;
         }
         else
         {
@@ -271,14 +274,18 @@ public sealed class GameField : MonoBehaviour
     {
         if (state)
         {
+            _isPaused = true;
             ClearField();
             ResetOrder();
         }
         else
+        {
+            _isPaused = false;
             StartCoroutine(ResetActiveTiles(0));
+        }
     }
 
-    public void Restart()
+    public void RestartAndRun()
     {
         ResetProgress();
         ResetDifficulty();
