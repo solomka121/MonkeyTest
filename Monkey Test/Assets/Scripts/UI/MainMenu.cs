@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : PopUpPanel
 {
@@ -23,6 +25,7 @@ public class MainMenu : PopUpPanel
     {
         ActivePanel = mainButtonsPanel;
 
+        play.onClick.AddListener(PlayGame);
         options.onClick.AddListener(OpenOptionsMenu);
         optionsPanelBackButton.onClick.AddListener(OpenMainButtonsMenu);
         quit.onClick.AddListener(Quit);
@@ -55,6 +58,20 @@ public class MainMenu : PopUpPanel
     private void OpenOptionsMenu()
     {
         ChangeActivePanel(optionsPanel);
+    }
+
+    private void PlayGame()
+    {
+        //background.LeanAlpha(0, 0.1f).setEase(LeanAlphaType);
+        ShrinkIn();
+        StartCoroutine(LoadGameScene());
+    }
+
+    private IEnumerator LoadGameScene()
+    {
+        yield return new WaitForSeconds(timeToShrinkIn);
+
+        SceneManager.LoadScene(1);
     }
 
     private void Quit()
