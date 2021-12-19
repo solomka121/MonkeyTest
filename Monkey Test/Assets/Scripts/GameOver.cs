@@ -19,10 +19,14 @@ public sealed class GameOver : PopUpPanel
     {
         base.Awake();
 
+        startPosition = new Vector2(0, -Screen.height * 2);
+
         _restartButton.onClick.AddListener(RestartGame);
         _restartButtonCanvasGroup = _restartButton.GetComponent<CanvasGroup>();
         _restartButtonCanvasGroup.alpha = 0;
         _restartButtonCanvasGroup.blocksRaycasts = false;
+
+        gameObject.SetActive(false);
     }
 
     public void EndGame(int score , int highScore , bool UpdateHighScore)
@@ -32,20 +36,15 @@ public sealed class GameOver : PopUpPanel
         NeedToUpdateHighScore = UpdateHighScore;
     }
 
-    protected override void SetStartPosition()
+    public override void ShrinkOut()
     {
-        startPosition = new Vector2(0, -Screen.height);
-    }
-
-    protected override void ShrinkOut()
-    {
-        // Reset 
-        _restartButtonCanvasGroup.alpha = 0;
-        _restartButtonCanvasGroup.blocksRaycasts = false;
-        _scoreText.text = "";
-        //
-
         base.ShrinkOut();
+
+        // Reset 
+        _restartButtonCanvasGroup.alpha = 0f;
+        _restartButtonCanvasGroup.blocksRaycasts = false;
+        _scoreText.text = "0";
+        //
     }
 
     private IEnumerator AnimateScore(int score , int highScore)

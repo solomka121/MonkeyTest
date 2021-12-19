@@ -1,28 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class PopUpPanel : MonoBehaviour
+public class PopUpPanel : MonoBehaviour
 {
-    public LeanTweenType LeanAlphaType;
+    public LeanTweenType LeanAlphaType = LeanTweenType.easeOutCubic;
     public AnimationCurve ShrinkOutType;
-    public float timeToShrinkOut = 2f;
-    public LeanTweenType ShrinkInType;
-    public float timeToShrinkIn = 1f;
+    public float timeToShrinkOut = 1f;
+    public LeanTweenType ShrinkInType = LeanTweenType.easeInCubic;
+    public float timeToShrinkIn = 0.5f;
     public Transform panel;
     public CanvasGroup background;
 
-    protected Vector2 startPosition;
+    [SerializeField] protected Vector2 startPosition;
 
     protected virtual void Awake()
     {
-        gameObject.SetActive(false);
-        SetStartPosition();
+        //gameObject.SetActive(false);
     }
 
-    protected abstract void SetStartPosition();
-
-    protected virtual void ShrinkOut()
+    public virtual void ShrinkOut()
     {
         background.alpha = 0;
         panel.transform.localPosition = startPosition;

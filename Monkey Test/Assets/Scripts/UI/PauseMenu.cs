@@ -6,7 +6,7 @@ using System;
 
 public sealed class PauseMenu : PopUpPanel
 {
-    public Button pause;
+    //public Button pause; // do manually
     public Button restart;
     public Button options;
     public Button exit;
@@ -19,14 +19,14 @@ public sealed class PauseMenu : PopUpPanel
     {
         base.Awake();
 
-        pause.onClick.AddListener(PauseGame);
+        startPosition = new Vector2(0, Screen.width * 2);
+
+        //pause.onClick.AddListener(PauseGame);
         restart.onClick.AddListener(RestartGame);
         resume.onClick.AddListener(ResumeGame);
         exit.onClick.AddListener(ExitGame);
-    }
-    protected override void SetStartPosition()
-    {
-        startPosition = new Vector2(0, Screen.width);
+
+        gameObject.SetActive(false);
     }
 
     public void PauseGame()
