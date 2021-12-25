@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public sealed class PauseMenu : PopUpPanel
+public sealed class PauseMenu : PopUpPanel , Iinitialize
 {
     //public Button pause; // do manually
     public Button restart;
@@ -15,7 +15,7 @@ public sealed class PauseMenu : PopUpPanel
     public event Action<bool> SetOnPause;
     public event Action Restart;
 
-    public void Awake()
+    public void Init()
     {
         startPosition = new Vector2(0, Screen.width * 2);
 

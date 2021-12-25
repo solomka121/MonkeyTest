@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public sealed class GameOver : PopUpPanel
+public sealed class GameOver : PopUpPanel , Iinitialize
 {
     [SerializeField] private Timer _timer;
 
@@ -18,7 +18,7 @@ public sealed class GameOver : PopUpPanel
 
     public event Action Restart;
 
-    public void Awake()
+    public void Init()
     {
 
         startPosition = new Vector2(0, -Screen.height * 2);
