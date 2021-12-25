@@ -24,9 +24,11 @@ public sealed class Manager : MonoBehaviour
         gameOver.SetHighScore(_localGameHighScore);
 
         gameField.OnEndGameFieldClear += EndGame;
-        pauseMenu.SetOnPause += gameField.PauseGame;
-        pauseMenu.Restart += gameField.RestartAndRun;
+        pauseMenu.SetOnPause += gameField.PauseGame; // need to do general event (maby static external class)
+        pauseMenu.Restart += gameField.Reset;
         pauseMenu.Restart += infoPanel.timer.RefreshTimer;
+        gameOver.Restart += gameField.Restart;
+        gameOver.Restart += infoPanel.timer.RefreshTimer;
         pauseMenu.SetOnPause += infoPanel.timer.PauseTimer;
     }
 
@@ -46,8 +48,10 @@ public sealed class Manager : MonoBehaviour
     {
         gameField.OnEndGameFieldClear -= EndGame;
         pauseMenu.SetOnPause -= gameField.PauseGame;
-        pauseMenu.Restart -= gameField.RestartAndRun;
+        pauseMenu.Restart -= gameField.Reset;
         pauseMenu.Restart -= infoPanel.timer.RefreshTimer;
+        gameOver.Restart -= gameField.Restart;
+        gameOver.Restart -= infoPanel.timer.RefreshTimer;
         pauseMenu.SetOnPause -= infoPanel.timer.PauseTimer;
     }
 }

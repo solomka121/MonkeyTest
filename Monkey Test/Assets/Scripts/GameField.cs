@@ -285,10 +285,18 @@ public sealed class GameField : MonoBehaviour
         }
     }
 
-    public void RestartAndRun()
+    public void Reset()
     {
         ResetProgress();
         ResetDifficulty();
+    }
+
+    public void Restart()
+    {
+        ResetProgress();
+        ResetDifficulty();
+
+        PlayGame(true);
     }
 
     private void ResetProgress()

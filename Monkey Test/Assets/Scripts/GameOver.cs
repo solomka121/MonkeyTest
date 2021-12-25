@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public sealed class GameOver : PopUpPanel
 {
@@ -14,6 +15,8 @@ public sealed class GameOver : PopUpPanel
     [SerializeField] private Button _restartButton;
     private CanvasGroup _restartButtonCanvasGroup;
     private bool NeedToUpdateHighScore;
+
+    public event Action Restart;
 
     public void Awake()
     {
@@ -88,7 +91,7 @@ public sealed class GameOver : PopUpPanel
 
     private void RestartGame()
     {
-        _timer.RefreshTimer();
+        Restart?.Invoke();
         ShrinkIn();
     }
 
