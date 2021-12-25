@@ -15,10 +15,8 @@ public sealed class PauseMenu : PopUpPanel
     public event Action<bool> SetOnPause;
     public event Action Restart;
 
-    protected override void Awake()
+    public void Awake()
     {
-        base.Awake();
-
         startPosition = new Vector2(0, Screen.width * 2);
 
         //pause.onClick.AddListener(PauseGame);

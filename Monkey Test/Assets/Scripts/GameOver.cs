@@ -15,9 +15,8 @@ public sealed class GameOver : PopUpPanel
     private CanvasGroup _restartButtonCanvasGroup;
     private bool NeedToUpdateHighScore;
 
-    protected override void Awake()
+    public void Awake()
     {
-        base.Awake();
 
         startPosition = new Vector2(0, -Screen.height * 2);
 

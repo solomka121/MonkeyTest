@@ -2,7 +2,7 @@
 
 public class PopUpPanel : MonoBehaviour
 {
-    protected bool DisableAfterShring;
+    protected bool DisableAfterShrink;
     public LeanTweenType LeanAlphaType = LeanTweenType.easeOutCubic;
     public AnimationCurve ShrinkOutType;
     public float timeToShrinkOut = 1f;
@@ -13,17 +13,12 @@ public class PopUpPanel : MonoBehaviour
 
     [SerializeField] protected Vector2 startPosition;
 
-    protected virtual void Awake()
-    {
-        //gameObject.SetActive(false);
-    }
-
     public virtual void ShrinkOut()
     {
         background.alpha = 0;
         panel.transform.localPosition = startPosition;
 
-        if(DisableAfterShring)
+        if(DisableAfterShrink)
             gameObject.SetActive(true);
         background.LeanAlpha(1, timeToShrinkOut).setEase(LeanAlphaType);
         panel.LeanMoveLocal(Vector2.zero, timeToShrinkOut).setEase(ShrinkOutType);
@@ -37,7 +32,7 @@ public class PopUpPanel : MonoBehaviour
 
     public void DisablePanel()
     {
-        if(DisableAfterShring)
+        if(DisableAfterShrink)
             gameObject.SetActive(false);
     }
 }
