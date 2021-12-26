@@ -73,8 +73,16 @@ public class SlideOut : MonoBehaviour, IShowUp, Iinitialize
 
     public void Reverse()
     {
-        _hidenPosition = -_hidenPosition;
-        _startPosition = -_startPosition;
+        if (_moveX)
+        {
+            _hidenPosition.x = transform.localPosition.x;
+            _startPosition.x = -transform.localPosition.x;
+        }
+        if (_moveY)
+        {
+            _hidenPosition.y = transform.localPosition.y;
+            _startPosition.y = -transform.localPosition.y;
+        }
     }
 
     private void Update()

@@ -590,6 +590,7 @@ MonoBehaviour:
   _moveX: 1
   _moveY: 0
   _reverse: 1
+  _pingPong: 0
   activate: 0
 --- !u!114 &284740305
 MonoBehaviour:
@@ -3083,6 +3084,7 @@ MonoBehaviour:
   _moveX: 0
   _moveY: 1
   _reverse: 0
+  _pingPong: 0
   activate: 0
 --- !u!1 &1587117636
 GameObject:
@@ -3378,6 +3380,7 @@ MonoBehaviour:
   _moveX: 1
   _moveY: 0
   _reverse: 1
+  _pingPong: 0
   activate: 0
 --- !u!114 &1769299622
 MonoBehaviour:
