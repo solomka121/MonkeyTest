@@ -24,7 +24,7 @@ public class PopUpPanel : MonoBehaviour
         panel.LeanMoveLocal(Vector2.zero, timeToShrinkOut).setEase(ShrinkOutType);
     }
 
-    public void ShrinkIn()
+    public virtual void ShrinkIn()
     {
         background.LeanAlpha(0, timeToShrinkIn).setEaseLinear();
         panel.LeanMoveLocal(startPosition, timeToShrinkIn).setEase(ShrinkInType).setOnComplete(DisablePanel);

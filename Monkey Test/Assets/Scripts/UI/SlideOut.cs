@@ -15,6 +15,7 @@ public class SlideOut : MonoBehaviour, IShowUp, Iinitialize
     [SerializeField] private bool _moveX = true;
     [SerializeField] private bool _moveY = true;
     [SerializeField] private bool _reverse = false;
+    [SerializeField] private bool _pingPong = false;
     public bool activate;
 
     public void Init()
@@ -22,32 +23,21 @@ public class SlideOut : MonoBehaviour, IShowUp, Iinitialize
         _hidenPosition = _rect.localPosition;
         if (_moveX)
         {
-            if (_reverse)
-            {
-                _hidenPosition.x = transform.localPosition.x;
-                _startPosition.x = -transform.localPosition.x;
-            }
-            else
-            {
-                _hidenPosition.x = -transform.localPosition.x;
-                _startPosition.x = transform.localPosition.x;
-            }
+            _hidenPosition.x = -transform.localPosition.x;
+            _startPosition.x = transform.localPosition.x;
         }
         if (_moveY)
         {
-            if (_reverse)
-            {
-                _hidenPosition.y = transform.localPosition.y;
-                _startPosition.y = -transform.localPosition.y;
-            }
-            else
-            {
-                _hidenPosition.y = -transform.localPosition.y;
-                _startPosition.y = transform.localPosition.y;
-            }
+            _hidenPosition.y = -transform.localPosition.y;
+            _startPosition.y = transform.localPosition.y;
         }
 
         _hidenPosition += _offset;
+
+        if (_reverse)
+        {
+            Reverse();
+        }
 
         if (_playOnStart)
         {
@@ -71,12 +61,22 @@ public class SlideOut : MonoBehaviour, IShowUp, Iinitialize
             transform.LeanMoveLocalX(_startPosition.x, _timeToSlideOut).setEase(_slideOutEase);
         if (_moveY)
             transform.LeanMoveLocalY(_startPosition.y, _timeToSlideOut).setEase(_slideOutEase);
+
+        if (_pingPong)
+            Reverse();
     }
 
     public void Hide()
     {
         _rect.localPosition = _hidenPosition;
     }
+
+    public void Reverse()
+    {
+        _hidenPosition = -_hidenPosition;
+        _startPosition = -_startPosition;
+    }
+
     private void Update()
     {
         if (activate)

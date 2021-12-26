@@ -8,6 +8,9 @@ using System;
 public sealed class GameOver : PopUpPanel , Iinitialize
 {
     [SerializeField] private Timer _timer;
+    [SerializeField] private PlayerWallet _playerWallet;
+    [SerializeField] private SlideOut _wallet;
+    [SerializeField] private ParticleSystem CoinSplash;
 
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private TMP_Text _highScoreText;
@@ -20,7 +23,6 @@ public sealed class GameOver : PopUpPanel , Iinitialize
 
     public void Init()
     {
-
         startPosition = new Vector2(0, -Screen.height * 2);
 
         _restartButton.onClick.AddListener(RestartGame);
@@ -49,12 +51,19 @@ public sealed class GameOver : PopUpPanel , Iinitialize
         //
     }
 
+    public override void ShrinkIn()
+    {
+        base.ShrinkIn();
+        _wallet.ShowUp();
+    }
+
     private IEnumerator AnimateScore(int score , int highScore)
     {
         yield return new WaitForSeconds(timeToShrinkOut);
 
         float duration = 0.8f;
         _scoreText.gameObject.LeanScale(new Vector3(1.3f , 1.3f , 1) , duration).setEaseOutSine().setOnComplete(SetScoreTextToNormal);
+
 
         int currentScore = 0;
         int start = currentScore;
@@ -66,6 +75,14 @@ public sealed class GameOver : PopUpPanel , Iinitialize
             yield return null;
         }
         _scoreText.text = score.ToString();
+
+        //CoinSplash.emission.burstCount = score;
+        int earnedCoins = score / 10;
+        if(earnedCoins != 0)
+        {
+            CoinSplash.Play();
+            _playerWallet.AnimateCoins(earnedCoins);
+        }
 
         if (NeedToUpdateHighScore)
             AnimateHighScoreBump(highScore);
