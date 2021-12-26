@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShowUpGroup : MonoBehaviour
+public class ShowUpGroup : MonoBehaviour , Iinitialize
 {
     [SerializeField] private bool _playOnEnable = true;
     [SerializeField] private float _startDelay;
     [SerializeField] private float _delayBetweenShrinks;
-    [SerializeField] private List<IShrinkOut> _shrinkOutList = new List<IShrinkOut>();
+    [SerializeField] private List<IShowUp> _shrinkOutList = new List<IShowUp>();
 
-    private void Awake()
+    public void Init()
     {
-        _shrinkOutList.AddRange(GetComponentsInChildren<IShrinkOut>());
+        _shrinkOutList.AddRange(GetComponentsInChildren<IShowUp>());
     }
 
     public void GroupShrinkOut()
@@ -21,14 +21,14 @@ public class ShowUpGroup : MonoBehaviour
 
     public IEnumerator GroupShrinkOutCorutine()
     {   
-        foreach (IShrinkOut shrink in _shrinkOutList)
+        foreach (IShowUp shrink in _shrinkOutList)
             shrink.Hide();
 
         yield return new WaitForSeconds(_startDelay);
 
-        foreach (IShrinkOut shrink in _shrinkOutList)
+        foreach (IShowUp shrink in _shrinkOutList)
         {
-            shrink.ShrinkOut();
+            shrink.ShowUp();
             yield return new WaitForSeconds(_delayBetweenShrinks);
         }
     }

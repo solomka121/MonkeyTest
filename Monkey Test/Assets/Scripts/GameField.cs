@@ -39,6 +39,7 @@ public sealed class GameField : MonoBehaviour
     private bool _isPaused;
     private bool _isTimerActive;
     private float _spawnTimer;
+    private bool _isRestartingField;
     [SerializeField] private float _spawnTimerTemp = 0.1f;
     [SerializeField] private List<Tile> _tileList;
 
@@ -204,6 +205,11 @@ public sealed class GameField : MonoBehaviour
         StartCoroutine(StartTileShowAnimation());
     }
 
+    private void ShowTiles()
+    {
+        StartCoroutine(StartTileShowAnimation());
+    }
+
     private void HideTiles()
     {
         StartCoroutine(StartTileHideAnimation());
@@ -218,6 +224,12 @@ public sealed class GameField : MonoBehaviour
             _tileList[h].AnimateSpawn();
         }
         _spawnTimer = _spawnTimerTemp;
+
+       /* if (_isRestartingField)
+        {
+            PlayGame(true);
+            _isRestartingField = false;
+        }*/
     }
 
     private IEnumerator StartTileHideAnimation()
@@ -230,6 +242,11 @@ public sealed class GameField : MonoBehaviour
             _tileList[h].AnimateHide();
         }
         _spawnTimer = _spawnTimerTemp;
+
+        /*yield return new WaitForSeconds(0.4f);
+
+        if (_isRestartingField)
+            ShowTiles();*/
     }
 
     void Update()
@@ -289,6 +306,9 @@ public sealed class GameField : MonoBehaviour
     {
         ResetProgress();
         ResetDifficulty();
+
+        /*_isRestartingField = true;
+        HideTiles();*/
     }
 
     public void Restart()
@@ -297,6 +317,9 @@ public sealed class GameField : MonoBehaviour
         ResetDifficulty();
 
         PlayGame(true);
+
+        /*_isRestartingField = true;
+        HideTiles();*/
     }
 
     private void ResetProgress()

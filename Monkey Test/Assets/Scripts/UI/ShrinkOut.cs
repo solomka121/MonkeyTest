@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShowUp : MonoBehaviour , IShrinkOut , Iinitialize
+public class ShrinkOut : MonoBehaviour , IShowUp , Iinitialize
 {
     public bool playOnStart = false;
     public float showUpDelay = 0f;
@@ -12,8 +12,6 @@ public class ShowUp : MonoBehaviour , IShrinkOut , Iinitialize
     public bool shrinkY = true;
     private Vector3 startScale;
     private Vector3 shrinkedScale;
-
-    public bool Activate;
 
     public void Init()
     {
@@ -27,7 +25,7 @@ public class ShowUp : MonoBehaviour , IShrinkOut , Iinitialize
         if(playOnStart)
         {
             Hide();
-            ShrinkOut();
+            ShowUp();
         }
     }
 
@@ -36,7 +34,7 @@ public class ShowUp : MonoBehaviour , IShrinkOut , Iinitialize
         transform.localScale = shrinkedScale;
     }
 
-    public void ShrinkOut()
+    public void ShowUp()
     {
         StartCoroutine(ShrinkOutWithDelay(showUpDelay));
     }
@@ -49,15 +47,5 @@ public class ShowUp : MonoBehaviour , IShrinkOut , Iinitialize
             LeanTween.scaleX(gameObject, startScale.x, timeToShrinkOut).setEase(shrinkOutEase);
         if (shrinkY)
             LeanTween.scaleY(gameObject, startScale.y, timeToShrinkOut).setEase(shrinkOutEase);
-    }
-
-    private void Update()
-    {
-        if (Activate)
-        {
-            Hide();
-            ShrinkOut();
-            Activate = false;
-        }
     }
 }

@@ -2291,6 +2291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9816081fd118add4baa2a81d1912ec1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableAfterShrink: 0
   LeanAlphaType: 7
   ShrinkOutType:
     serializedVersion: 2
@@ -2406,6 +2407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f95a9e790a14594d8d8e267bcdbf4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableAfterShrink: 1
   LeanAlphaType: 17
   ShrinkOutType:
     serializedVersion: 2
@@ -2839,6 +2841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d6ae7d8648a5b478403ea16016d7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableAfterShrink: 1
   LeanAlphaType: 17
   ShrinkOutType:
     serializedVersion: 2

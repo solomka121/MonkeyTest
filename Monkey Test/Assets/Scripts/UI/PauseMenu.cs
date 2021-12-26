@@ -8,7 +8,7 @@ public sealed class PauseMenu : PopUpPanel , Iinitialize
 {
     //public Button pause; // do manually
     public Button restart;
-    public Button options;
+    public Toggle music;
     public Button exit;
     public Button resume;
 
