@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : PopUpPanel
+public class MainMenu : PopUpPanel , Iinitialize
 {
     [Header("Panels")]
     public PopUpPanel mainButtonsPanel;
@@ -14,30 +14,39 @@ public class MainMenu : PopUpPanel
     [SerializeField] private ShowUpGroup buttonsGroup;
 
     private CanvasGroup _canvasGroup;
-    private PopUpPanel ActivePanel;
+    private PopUpPanel _activePanel;
 
-    void Start()
+    public void Init()
     {
-        ActivePanel = mainButtonsPanel;
+        _activePanel = mainButtonsPanel;
+        mainButtonsPanel.gameObject.SetActive(false);
 
         play.onClick.AddListener(PlayGame);
 
         _canvasGroup = GetComponent<CanvasGroup>();
     }
 
+    public void Start()
+    {
+        mainButtonsPanel.ShrinkOut();
+    }
+
     private void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            ActivePanel = mainButtonsPanel;
+            if (_activePanel == mainButtonsPanel)
+                Quit();
+            else
+                ChangeActivePanel(mainButtonsPanel);
         }
     }
 
     private void ChangeActivePanel(PopUpPanel panel)
     {
-        ActivePanel.ShrinkIn();
-        ActivePanel = panel;
-        ActivePanel.ShrinkOut();
+        _activePanel.ShrinkIn();
+        _activePanel = panel;
+        _activePanel.ShrinkOut();
     }
 
     private void OpenMainButtonsMenu()
