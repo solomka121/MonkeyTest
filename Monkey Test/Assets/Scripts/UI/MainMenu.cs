@@ -7,16 +7,11 @@ public class MainMenu : PopUpPanel
 {
     [Header("Panels")]
     public PopUpPanel mainButtonsPanel;
-    //private CanvasGroup _mainButtonsCanvasGroup;
-    public PopUpPanel optionsPanel;
-    public Button optionsPanelBackButton;
-    //private CanvasGroup _optionsCanvasGroup;
     [Header("Buttons")]
     public Button play;
-    public Button options;
-    public Button shop;
+    public Toggle Volume;
     public Button themes;
-    public Button quit;
+    [SerializeField] private ShowUpGroup buttonsGroup;
 
     private CanvasGroup _canvasGroup;
     private PopUpPanel ActivePanel;
@@ -26,11 +21,6 @@ public class MainMenu : PopUpPanel
         ActivePanel = mainButtonsPanel;
 
         play.onClick.AddListener(PlayGame);
-        options.onClick.AddListener(OpenOptionsMenu);
-        optionsPanelBackButton.onClick.AddListener(OpenMainButtonsMenu);
-        quit.onClick.AddListener(Quit);
-        //_mainButtonsCanvasGroup = mainButtonsPanel.GetComponent<CanvasGroup>();
-        //_optionsCanvasGroup = optionsPanel.GetComponent<CanvasGroup>();
 
         _canvasGroup = GetComponent<CanvasGroup>();
     }
@@ -55,14 +45,10 @@ public class MainMenu : PopUpPanel
         ChangeActivePanel(mainButtonsPanel);
     }
 
-    private void OpenOptionsMenu()
-    {
-        ChangeActivePanel(optionsPanel);
-    }
-
     private void PlayGame()
     {
         //background.LeanAlpha(0, 0.1f).setEase(LeanAlphaType);
+        buttonsGroup.GroupShowUp();
         ShrinkIn();
         StartCoroutine(LoadGameScene());
     }

@@ -7,14 +7,26 @@ public class ShowUpGroup : MonoBehaviour , Iinitialize
     [SerializeField] private bool _playOnEnable = true;
     [SerializeField] private float _startDelay;
     [SerializeField] private float _delayBetweenShrinks;
+    [SerializeField] private bool _findObjectsOnStart = true;
+    [SerializeField] private SlideOut[] _slides;
+    [SerializeField] private ShrinkOut[] _shrinks;
     [SerializeField] private List<IShowUp> _shrinkOutList = new List<IShowUp>();
 
     public void Init()
     {
-        _shrinkOutList.AddRange(GetComponentsInChildren<IShowUp>());
+        if (_findObjectsOnStart)
+        {
+            _shrinkOutList.AddRange(GetComponentsInChildren<IShowUp>());
+        }
+        else
+        {
+            _shrinkOutList.AddRange(_slides);
+            _shrinkOutList.AddRange(_shrinks);
+        }
+
     }
 
-    public void GroupShrinkOut()
+    public void GroupShowUp()
     {
         StartCoroutine(GroupShrinkOutCorutine());
     }
@@ -36,6 +48,6 @@ public class ShowUpGroup : MonoBehaviour , Iinitialize
     private void OnEnable()
     {
         if(_playOnEnable)
-            GroupShrinkOut();
+            GroupShowUp();
     }
 }

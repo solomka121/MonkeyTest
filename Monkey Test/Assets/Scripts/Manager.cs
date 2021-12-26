@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public sealed class Manager : MonoBehaviour
 {
@@ -12,19 +9,6 @@ public sealed class Manager : MonoBehaviour
 
     private PlayerHighScore _playerScore;
     private int _localGameHighScore;
-
-    private List<Iinitialize> _initializableList = new List<Iinitialize>(); // can be extarnal class
-
-    private void Awake()
-    {
-        var scene = SceneManager.GetActiveScene();
-        var rootObjects = scene.GetRootGameObjects(); ;
-
-        foreach (var obj in rootObjects)
-            _initializableList.AddRange(obj.GetComponentsInChildren<Iinitialize>(true));
-        foreach (Iinitialize Iinitializable in _initializableList)
-            Iinitializable.Init();
-    }
 
     private void Start()
     {

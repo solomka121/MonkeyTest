@@ -1246,7 +1246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7aee70f16d95e4d980b7950d9b7cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 20
+  _duration: 3
   _timeToEnd: 0
 --- !u!1 &519420028
 GameObject:
@@ -1560,8 +1560,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284703062
-  m_fontColor: {r: 0.33753118, g: 0.37858227, b: 0.38679248, a: 1}
+    rgba: 4285624424
+  m_fontColor: {r: 0.40784085, g: 0.4386555, b: 0.4433962, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2116,7 +2116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3372549, g: 0.38039216, b: 0.3882353, a: 1}
+  m_Color: {r: 0.40784314, g: 0.4392157, b: 0.44705883, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -9133,6 +9133,7 @@ GameObject:
   - component: {fileID: 1866206950}
   - component: {fileID: 1866206953}
   - component: {fileID: 1866206951}
+  - component: {fileID: 1866206954}
   - component: {fileID: 1866206952}
   m_Layer: 0
   m_Name: Manager
@@ -9218,6 +9219,18 @@ MonoBehaviour:
   infoPanel: {fileID: 1036113131}
   gameOver: {fileID: 2122623502}
   pauseMenu: {fileID: 1502497226}
+--- !u!114 &1866206954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866206949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b508e2184c02c4baff2953a7839f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1873304323
 GameObject:
   m_ObjectHideFlags: 0

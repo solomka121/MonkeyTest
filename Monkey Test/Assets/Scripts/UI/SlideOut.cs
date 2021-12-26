@@ -14,6 +14,7 @@ public class SlideOut : MonoBehaviour, IShowUp, Iinitialize
     [SerializeField] private Vector3 _offset;
     [SerializeField] private bool _moveX = true;
     [SerializeField] private bool _moveY = true;
+    [SerializeField] private bool _reverse = false;
     public bool activate;
 
     public void Init()
@@ -21,13 +22,29 @@ public class SlideOut : MonoBehaviour, IShowUp, Iinitialize
         _hidenPosition = _rect.localPosition;
         if (_moveX)
         {
-            _hidenPosition.x = -transform.localPosition.x;
-            _startPosition.x = transform.localPosition.x;
+            if (_reverse)
+            {
+                _hidenPosition.x = transform.localPosition.x;
+                _startPosition.x = -transform.localPosition.x;
+            }
+            else
+            {
+                _hidenPosition.x = -transform.localPosition.x;
+                _startPosition.x = transform.localPosition.x;
+            }
         }
         if (_moveY)
         {
-            _hidenPosition.y = -transform.localPosition.y;
-            _startPosition.y = transform.localPosition.y;
+            if (_reverse)
+            {
+                _hidenPosition.y = transform.localPosition.y;
+                _startPosition.y = -transform.localPosition.y;
+            }
+            else
+            {
+                _hidenPosition.y = -transform.localPosition.y;
+                _startPosition.y = transform.localPosition.y;
+            }
         }
 
         _hidenPosition += _offset;
