@@ -34,11 +34,6 @@ public class SlideOut : MonoBehaviour, IShowUp, Iinitialize
 
         _hidenPosition += _offset;
 
-        if (_reverse)
-        {
-            Reverse();
-        }
-
         if (_playOnStart)
         {
             Hide();
@@ -53,14 +48,20 @@ public class SlideOut : MonoBehaviour, IShowUp, Iinitialize
 
     public IEnumerator SlideOutCorutine()
     {
-        Hide();
+            Hide();
 
         yield return new WaitForSeconds(_slideOutDelay);
 
         if (_moveX)
-            transform.LeanMoveLocalX(_startPosition.x, _timeToSlideOut).setEase(_slideOutEase);
+        {
+            float xValue = _reverse ? -_startPosition.x: _startPosition.x;
+            transform.LeanMoveLocalX(xValue, _timeToSlideOut).setEase(_slideOutEase);
+        }
         if (_moveY)
-            transform.LeanMoveLocalY(_startPosition.y, _timeToSlideOut).setEase(_slideOutEase);
+        {
+            float yValue = _reverse ? -_startPosition.y : _startPosition.y; 
+            transform.LeanMoveLocalY(yValue , _timeToSlideOut).setEase(_slideOutEase);
+        }
 
         if (_pingPong)
             Reverse();
@@ -68,21 +69,15 @@ public class SlideOut : MonoBehaviour, IShowUp, Iinitialize
 
     public void Hide()
     {
+        if (_reverse)
+            return;
+
         _rect.localPosition = _hidenPosition;
     }
 
     public void Reverse()
     {
-        if (_moveX)
-        {
-            _hidenPosition.x = transform.localPosition.x;
-            _startPosition.x = -transform.localPosition.x;
-        }
-        if (_moveY)
-        {
-            _hidenPosition.y = transform.localPosition.y;
-            _startPosition.y = -transform.localPosition.y;
-        }
+        _reverse = !_reverse;
     }
 
     private void Update()

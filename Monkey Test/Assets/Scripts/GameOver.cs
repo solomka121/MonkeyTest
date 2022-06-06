@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public sealed class GameOver : PopUpPanel , Iinitialize
 {
@@ -16,6 +17,7 @@ public sealed class GameOver : PopUpPanel , Iinitialize
     [SerializeField] private TMP_Text _highScoreText;
     [SerializeField] private AnimationCurve HighScoreBump;
     [SerializeField] private Button _restartButton;
+    [SerializeField] private Button _exitButton;
     private CanvasGroup _restartButtonCanvasGroup;
     private bool NeedToUpdateHighScore;
 
@@ -26,6 +28,7 @@ public sealed class GameOver : PopUpPanel , Iinitialize
         startPosition = new Vector2(0, -Screen.height * 2);
 
         _restartButton.onClick.AddListener(RestartGame);
+        _exitButton.onClick.AddListener(ExitToMainMenu);
         _restartButtonCanvasGroup = _restartButton.GetComponent<CanvasGroup>();
         _restartButtonCanvasGroup.alpha = 0;
         _restartButtonCanvasGroup.blocksRaycasts = false;
@@ -110,6 +113,11 @@ public sealed class GameOver : PopUpPanel , Iinitialize
     {
         Restart?.Invoke();
         ShrinkIn();
+    }
+
+    private void ExitToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void ActivateRestartButton()
