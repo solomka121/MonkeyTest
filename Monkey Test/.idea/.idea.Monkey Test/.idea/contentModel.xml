@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\solom\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\solom\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Monkey Test.-67691118.00" t="ExcludeRecursive" />
-    <e p="D:\Unity\Projects\MonkeyTestGit\Monkey Test" t="IncludeRecursive">
+    <e p="C:\Users\solom\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Monkey Test.1392787770.00" t="ExcludeRecursive" />
+    <e p="D:\Unity\Projects\MonkeyTest\Monkey Test" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -108,6 +108,7 @@
             </e>
             <e p="Sprites" t="Include">
               <e p="EmojiOne Attribution.txt" t="Include" />
+              <e p="EmojiOne.json" t="Include" />
             </e>
           </e>
         </e>
@@ -140,6 +141,7 @@
             <e p="OptionsMenu.cs" t="Include" />
             <e p="PauseMenu.cs" t="Include" />
             <e p="PopUpPanel.cs" t="Include" />
+            <e p="SceneLoader.cs" t="Include" />
             <e p="ShowUpGroup.cs" t="Include" />
             <e p="ShrinkOut.cs" t="Include" />
             <e p="SimplePopUpPanel.cs" t="Include" />
